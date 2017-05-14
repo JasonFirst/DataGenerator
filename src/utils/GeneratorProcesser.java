@@ -146,10 +146,12 @@ public class GeneratorProcesser {
 	}
 
 	private Object getObjectGenericArrayType(GenerateConfig generateConfig, Type fieldType) throws Exception {
+		//TODO 未实现
 		return null;
 	}
 
 	private Object getObjectWildcardType() {
+		//TODO 未实现
 		return null;
 	}
 
