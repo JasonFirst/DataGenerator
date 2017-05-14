@@ -41,7 +41,7 @@ public static void main(String[] args) throws Exception {
 	config.putGenerator(new IntegerGenerator(250,300));
 	config.putGenerator(new DateGenerator(DateGenerator.fluctuate_milltsecond, 3, 16));
 	config.putGenerator("contactWechat",new StringGenerator(7,"1234567890"));
-	config.putGenerator("timeString",new StringGenerator("201%s-05-03","12345670"));
+	config.putGenerator("timeString",new StringGenerator("201%s-%s2-03","12345670","01"));
 	config.setOpenMessageTip(false);
 	config.setGenerateCount(4);
     
