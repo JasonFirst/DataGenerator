@@ -1,0 +1,29 @@
+package generator;
+
+import org.apache.commons.lang3.RandomUtils;
+
+import utils.Generator;
+
+public class IntegerGenerator extends Generator<Integer>{
+
+	private int startInclusive;
+	private int endExclusive;
+	
+	public IntegerGenerator() {
+		this.startInclusive = 0;
+		this.endExclusive = 100000;
+	}
+
+	public IntegerGenerator(int startInclusive, int endExclusive) {
+		this.startInclusive = startInclusive;
+		this.endExclusive = endExclusive;
+	}
+
+	@Override
+	public Integer generateData() {
+		return RandomUtils.nextInt(startInclusive, endExclusive);
+	}
+	
+
+	
+}
