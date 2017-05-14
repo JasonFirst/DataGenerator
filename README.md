@@ -55,15 +55,18 @@ public static void main(String[] args) throws Exception {
 ### 结果展示：
 ```
 {
+    "price": 261,
+    "timeString": "2015-12-03",
+    "title": "QETRE",
+    "contactWechat": "3369792",
+    "endDate": 1494773579178,
+    "isOnGoing": false,
     "channelNames": [
         "WWEWE",
         "WQTRT",
         "TERRW",
         "WEQTW"
     ],
-    "contactWechat": "3369792",
-    "endDate": 1494773579178,
-    "isOnGoing": false,
     "keyToDate": {
         "TWTWQ": 259,
         "ERTQQ": 262,
@@ -76,7 +79,6 @@ public static void main(String[] args) throws Exception {
         "WWTQE",
         "QRTWT"
     ],
-    "price": 261,
     "subTasks": [
         {
             "beginDate": 1494773579176,
@@ -126,8 +128,6 @@ public static void main(String[] args) throws Exception {
             "price": 274,
             "title": "RWERT"
         }
-    ],
-    "timeString": "2015-05-03",
-    "title": "QETRE"
+    ]
 }
 ```
