@@ -6,7 +6,7 @@
 	3.前端工程师明天请假，今天必须先把接口格式调通赶项目进度。
 	4.单元测试时需要大批量测试数据，但手工创建相当消耗时间。
 
-### 测试类
+### 测试类：
 public class Task {
     private String title;
     private Integer price;
@@ -20,7 +20,7 @@ public class Task {
     private String timeString;   
 }
 
-### 简单上手使用方式
+### 简单上手使用方式：
 public static void main(String[] args) throws Exception {
     Task one = GeneratorUtils.getOne(Task.class);
 		List<Task> tasks = GeneratorUtils.getList(Task.class);
@@ -29,7 +29,7 @@ public static void main(String[] args) throws Exception {
 }
 
 
-### 配置使用方式
+### 配置使用方式：
 public static void main(String[] args) throws Exception {
 		GenerateConfig config = new GenerateConfig();
 		config.putGenerator(new StringGenerator(5,"QWERT"));
@@ -46,7 +46,7 @@ public static void main(String[] args) throws Exception {
 		System.out.println(JSONObject.toJSONString(superTasks));
 }
 
-### 结果展示
+### 结果展示：
 {
     "channelNames": [
         "WWEWE",
