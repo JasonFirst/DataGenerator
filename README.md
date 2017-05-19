@@ -137,11 +137,6 @@ public static void main(String[] args) throws Exception {
 <dependencies>
 	<dependency>
 	    <groupId>org.apache.commons</groupId>
-	    <artifactId>commons-collections4</artifactId>
-	    <version>4.1</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.apache.commons</groupId>
 	    <artifactId>commons-lang3</artifactId>
 	    <version>3.4</version>
 	</dependency>
@@ -149,11 +144,6 @@ public static void main(String[] args) throws Exception {
 	    <groupId>commons-lang</groupId>
 	    <artifactId>commons-lang</artifactId>
 	    <version>2.5</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.google.guava</groupId>
-	    <artifactId>guava</artifactId>
-	    <version>19.0</version>
 	</dependency>
   </dependencies>
 ```
