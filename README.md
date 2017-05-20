@@ -131,3 +131,19 @@ public static void main(String[] args) throws Exception {
     ]
 }
 ```
+
+### 需要用到的包maven方式
+```
+<dependencies>
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	    <version>3.4</version>
+	</dependency>
+	<dependency>
+	    <groupId>commons-lang</groupId>
+	    <artifactId>commons-lang</artifactId>
+	    <version>2.5</version>
+	</dependency>
+  </dependencies>
+```
