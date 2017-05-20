@@ -1,19 +1,24 @@
 package test;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class Task {
 	
 	private String title;
 	private Integer price;
 	private Date endDate;
-	private List<String> channelNames;
 	private Set<String> nameSet;
-	private Map<String, Integer> keyToDate;
+	private LinkedHashSet<String> channelNames;
 	private List<SubTask> subTasks;
+	private LinkedList<String> linkedList;
+	private Map<Date, Long> mapTest;
+	private TreeMap<String, Integer> keyToDate;
 	private Boolean isOnGoing;
 	private String contactWechat;
 	private String timeString;
@@ -35,12 +40,6 @@ public class Task {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-	public List<String> getChannelNames() {
-		return channelNames;
-	}
-	public void setChannelNames(List<String> channelNames) {
-		this.channelNames = channelNames;
 	}
 	public Set<String> getNameSet() {
 		return nameSet;
@@ -75,8 +74,26 @@ public class Task {
 	public Map<String, Integer> getKeyToDate() {
 		return keyToDate;
 	}
-	public void setKeyToDate(Map<String, Integer> keyToDate) {
+	public LinkedHashSet<String> getChannelNames() {
+		return channelNames;
+	}
+	public void setChannelNames(LinkedHashSet<String> channelNames) {
+		this.channelNames = channelNames;
+	}
+	public void setKeyToDate(TreeMap<String, Integer> keyToDate) {
 		this.keyToDate = keyToDate;
+	}
+	public Map<Date, Long> getMapTest() {
+		return mapTest;
+	}
+	public void setMapTest(Map<Date, Long> mapTest) {
+		this.mapTest = mapTest;
+	}
+	public LinkedList<String> getLinkedList() {
+		return linkedList;
+	}
+	public void setLinkedList(LinkedList<String> linkedList) {
+		this.linkedList = linkedList;
 	}
 	
 }

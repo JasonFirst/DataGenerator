@@ -16,7 +16,7 @@ import generator.StringGenerator;
 
 
 /**
- * 成成器配置
+ * 生成器配置
  * @author Administrator
  *
  */

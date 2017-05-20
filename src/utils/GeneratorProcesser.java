@@ -106,19 +106,32 @@ public class GeneratorProcesser {
 		
 		Class<?> fieldClass = (Class<?>) ((ParameterizedType)fieldType).getRawType();
 		
-		if (fieldClass.isAssignableFrom(List.class)) {
-			List<?> listObject = new ArrayList<>();
+		if (List.class.isAssignableFrom(fieldClass)) {
+			
+			List<?> listObject;
+			if (fieldClass.isAssignableFrom(List.class)) {
+				listObject = new ArrayList<>();
+			}else {
+				listObject = (List<?>) fieldClass.newInstance();
+			}
+			
 			ParameterizedType parameterizedType = (ParameterizedType)fieldType;
 			Type listArguType = parameterizedType.getActualTypeArguments()[0];
 			for (int i = 0; i < generateConfig.getGenerateCount(); i++) {
 				Object oneElement = generateObjectByType(generateConfig,listArguType);
-				Method addMethod = List.class.getDeclaredMethod("add",Object.class);
+				Method addMethod = fieldClass.getDeclaredMethod("add",Object.class);
 				addMethod.invoke(listObject, oneElement);
 			}
 			return listObject;
-		}else if (fieldClass.isAssignableFrom(Map.class)) {
+		}else if (Map.class.isAssignableFrom(fieldClass)) {
 			
-			Map<?,?> mapObject = new HashMap<>();
+			Map<?,?> mapObject;
+			if (fieldClass.isAssignableFrom(Map.class)) {
+				mapObject = new HashMap<>();
+			}else {
+				mapObject = (Map<?, ?>) fieldClass.newInstance();
+			}
+			
 			ParameterizedType parameterizedType = (ParameterizedType)fieldType;
 			Type firstArguType = parameterizedType.getActualTypeArguments()[0];
 			Type secondArguType = parameterizedType.getActualTypeArguments()[1];
@@ -126,12 +139,18 @@ public class GeneratorProcesser {
 				Object firstElement = generateObjectByType(generateConfig,firstArguType);
 				Object secondElement = generateObjectByType(generateConfig,secondArguType);
 				Method putMethod = Map.class.getDeclaredMethod("put",Object.class,Object.class);
-				putMethod.invoke(mapObject, firstElement,secondElement);
+				putMethod.invoke(mapObject,firstElement,secondElement);
 			}
 			return mapObject;
-		}else if (fieldClass.isAssignableFrom(Set.class)) {
+		}else if (Set.class.isAssignableFrom(fieldClass)) {
 			
-			Set<?> setObject = new HashSet<>();
+			Set<?> setObject;
+			if (fieldClass.isAssignableFrom(Set.class)) {
+				setObject = new HashSet<>();
+			}else {
+				setObject = (Set<?>) fieldClass.newInstance();
+			}
+			
 			ParameterizedType parameterizedType = (ParameterizedType)fieldType;
 			Type setArguType = parameterizedType.getActualTypeArguments()[0];
 			for (int i = 0; i < generateConfig.getGenerateCount(); i++) {
