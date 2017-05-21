@@ -1,9 +1,11 @@
 package utils;
 
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import generator.BooleanGenerator;
@@ -16,7 +18,7 @@ import generator.StringGenerator;
 
 
 /**
- * 生成器配置
+ * 成成器配置
  * @author Administrator
  *
  */
@@ -27,6 +29,8 @@ public class GenerateConfig implements IGenerateConfig{
 	private Map<String,Generator<?>> classToGenerators = new HashMap<>();
 	private Map<String,Generator<?>> fieldNameToGenerators = new HashMap<>();
 
+	public static GenerateConfig DEFAULT_CONFIG = new GenerateConfig();
+	
 	public GenerateConfig() {
 		this.generateCount=10;
 		setDefaultGenerators();
@@ -37,9 +41,8 @@ public class GenerateConfig implements IGenerateConfig{
 	}
 
 	private void setDefaultGenerators() {
-		isOpenMessageTip =true;
-		String charRange = "qwertyuiopasdfghjklzxcvbnm1234567890";
-		putGenerator(new StringGenerator(10,charRange));
+		isOpenMessageTip =false;
+		putGenerator(new StringGenerator(10));
 		putGenerator(new IntegerGenerator(3000,8000));
 		putGenerator(new LongGenerator(100000,30000000));
 		putGenerator(new FloatGenerator(200.3f,3000.8f));
@@ -54,16 +57,18 @@ public class GenerateConfig implements IGenerateConfig{
 	
 	Generator<?> getObjectGenerator(Class<?> classType, String fieldName){
 		
+		Class<?> wrapperClassType = ClassUtils.primitiveToWrapper(classType);
+		
 		if (StringUtils.isEmpty(fieldName)) {
-			return classToGenerators.get(classType.getName());
+			return classToGenerators.get(wrapperClassType.getName());
 		}
 		
-		String fieldKey = fieldName+"_"+classType.getName();
+		String fieldKey = fieldName+"_"+wrapperClassType.getName();
 		Generator<?> generator = fieldNameToGenerators.get(fieldKey);
 		if (Objects.nonNull(generator)) {
 			return generator;
 		}else {
-			return classToGenerators.get(classType.getName());
+			return classToGenerators.get(wrapperClassType.getName());
 		}
 	}
 	
