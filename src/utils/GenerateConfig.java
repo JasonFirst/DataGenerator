@@ -9,6 +9,7 @@ import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import generator.BooleanGenerator;
+import generator.ByteGenerator;
 import generator.DateGenerator;
 import generator.DoubleGenerator;
 import generator.FloatGenerator;
@@ -49,6 +50,7 @@ public class GenerateConfig implements IGenerateConfig{
 		putGenerator(new DoubleGenerator(2000000.5,3000000.7));
 		putGenerator(new BooleanGenerator(20,80));
 		putGenerator(new DateGenerator());
+		putGenerator(new ByteGenerator());
 	}
 
 	int getGenerateCount() {
