@@ -1,6 +1,7 @@
 package utils;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Method;
@@ -13,7 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * 数据生成器处理中心
@@ -23,6 +26,7 @@ import java.util.Set;
 public class GeneratorProcesser {
 	
 	private static String currFieldName;
+	private Object topClassObject;
 	
 	
 	Object generateObject(GenerateConfig generateConfig,Class<?> classType){
@@ -58,12 +62,27 @@ public class GeneratorProcesser {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private <T> T generateObjectByFields(Field[] fields,GenerateConfig generateConfig,Class<T> dataType) throws Exception {
 		
-		T resultObject = dataType.newInstance();
+		T resultObject;
+		try {
+			resultObject = dataType.newInstance();
+			topClassObject = resultObject;
+		} catch (Exception e) {
+			Optional<Constructor<?>> oneParamsC = Stream.of(dataType.getConstructors()).filter(c->c.getParameterTypes().length==1).findFirst();
+			if (!oneParamsC.isPresent()) {
+				return null;
+			}
+			resultObject = (T) oneParamsC.get().newInstance(topClassObject);
+		}
 		
 		for (Field field : fields) {
 			currFieldName = field.getName();
+			if (currFieldName.equals("this$0")) {
+				//内部类自身有个属性代表自己
+				continue;
+			}
 			field.setAccessible(true);
 			Object typeValue = generateObjectByType(generateConfig, field.getGenericType());
 			field.set(resultObject,typeValue);
