@@ -20,7 +20,7 @@ public class DoubleGenerator extends Generator<Double>{
 	}
 
 	@Override
-	public Double generateData() {
+	public Double generateData(String fieldName) {
 		return RandomUtils.nextDouble(startInclusive, endExclusive);
 	}
 	

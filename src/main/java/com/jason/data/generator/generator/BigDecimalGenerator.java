@@ -22,7 +22,7 @@ public class BigDecimalGenerator extends Generator<BigDecimal>{
 	}
 
 	@Override
-	public BigDecimal generateData() {
+	public BigDecimal generateData(String fieldName) {
 		return new BigDecimal(RandomUtils.nextInt(startInclusive, endExclusive));
 	}
 	

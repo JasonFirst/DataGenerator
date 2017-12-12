@@ -51,16 +51,15 @@ public class GeneratorProcesser {
 		
 		Generator<?> fieldGenerator = generateConfig.getObjectGenerator(classType, currFieldName);
 		
-		if (Objects.isNull(fieldGenerator)) {
-			
-			String generateMsg = String.format("can't find ObjectGenerator for class : %s,\n    attempt split fields to generate Individually.",classType.getName());
-			printMsg(generateMsg, generateConfig);
-			
-			Field[] fields = classType.getDeclaredFields();
-			return generateObjectByFields(fields,generateConfig,classType);
-		}else {
-			return fieldGenerator.generateData();
+		if (Objects.nonNull(fieldGenerator)) {
+			return fieldGenerator.generateData(currFieldName);
 		}
+		
+		String generateMsg = String.format("can't find ObjectGenerator for class : %s,\n    attempt split fields to generate Individually.",classType.getName());
+		printMsg(generateMsg, generateConfig);
+		
+		Field[] fields = classType.getDeclaredFields();
+		return generateObjectByFields(fields,generateConfig,classType);
 	}
 
 	@SuppressWarnings("unchecked")

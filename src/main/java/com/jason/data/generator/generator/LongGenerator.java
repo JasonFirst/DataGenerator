@@ -20,7 +20,7 @@ public class LongGenerator extends Generator<Long>{
 	}
 
 	@Override
-	public Long generateData() {
+	public Long generateData(String fieldName) {
 		return RandomUtils.nextLong(startInclusive, endExclusive);
 	}
 	

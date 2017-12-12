@@ -20,7 +20,7 @@ public class BooleanGenerator extends Generator<Boolean>{
 	}
 
 	@Override
-	public Boolean generateData() {
+	public Boolean generateData(String fieldName) {
 		Integer frequencyCount = frequencyFalse + frequencyTrue;
 		int nextInt = RandomUtils.nextInt(0, frequencyCount);
 		return nextInt < frequencyTrue;

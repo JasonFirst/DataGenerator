@@ -10,19 +10,21 @@ import java.util.TreeMap;
 
 public class Task {
 	
+	private String studentId;
 	private String title;
+	private String testDate;
+	private String testTime;
+	private String contactWechat;
+	private String alternative;
 	private Integer price;
 	private Date endDate;
+	private Boolean isOnGoing;
 	private Set<String> nameSet;
 	private LinkedHashSet<String> channelNames;
 	private List<SubTask> subTasks;
 	private LinkedList<String> linkedList;
-	private Map<Date, Long> mapTest;
+	private Map<String, Long> mapTest;
 	private TreeMap<String, Integer> keyToDate;
-	private Boolean isOnGoing;
-	private String contactWechat;
-	private String timeString;
-	private String alternative;
 	
 	public String getTitle() {
 		return title;
@@ -66,11 +68,11 @@ public class Task {
 	public void setContactWechat(String contactWechat) {
 		this.contactWechat = contactWechat;
 	}
-	public String getTimeString() {
-		return timeString;
+	public String getTestTime() {
+		return testTime;
 	}
-	public void setTimeString(String timeString) {
-		this.timeString = timeString;
+	public void setTestTime(String testTime) {
+		this.testTime = testTime;
 	}
 	public Map<String, Integer> getKeyToDate() {
 		return keyToDate;
@@ -84,10 +86,10 @@ public class Task {
 	public void setKeyToDate(TreeMap<String, Integer> keyToDate) {
 		this.keyToDate = keyToDate;
 	}
-	public Map<Date, Long> getMapTest() {
+	public Map<String, Long> getMapTest() {
 		return mapTest;
 	}
-	public void setMapTest(Map<Date, Long> mapTest) {
+	public void setMapTest(Map<String, Long> mapTest) {
 		this.mapTest = mapTest;
 	}
 	public LinkedList<String> getLinkedList() {
@@ -101,6 +103,18 @@ public class Task {
 	}
 	public void setAlternative(String alternative) {
 		this.alternative = alternative;
+	}
+	public String getTestDate() {
+		return testDate;
+	}
+	public void setTestDate(String testDate) {
+		this.testDate = testDate;
+	}
+	public String getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
 	}
 	
 }

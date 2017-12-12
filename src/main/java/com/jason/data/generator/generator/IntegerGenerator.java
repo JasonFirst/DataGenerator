@@ -20,7 +20,7 @@ public class IntegerGenerator extends Generator<Integer>{
 	}
 
 	@Override
-	public Integer generateData() {
+	public Integer generateData(String fieldName) {
 		return RandomUtils.nextInt(startInclusive, endExclusive);
 	}
 	

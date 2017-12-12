@@ -20,7 +20,7 @@ public class ShortGenerator extends Generator<Short>{
 	}
 
 	@Override
-	public Short generateData() {
+	public Short generateData(String fieldName) {
 		return (short)RandomUtils.nextInt(startInclusive, endExclusive);
 	}
 	

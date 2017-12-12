@@ -22,7 +22,7 @@ public class ByteGenerator extends Generator<Byte>{
 	}
 
 	@Override
-	public Byte generateData() {
+	public Byte generateData(String fieldName) {
 		return (byte) RandomUtils.nextInt(start, end);
 	}
 	

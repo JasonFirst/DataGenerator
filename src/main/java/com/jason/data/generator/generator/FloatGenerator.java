@@ -20,7 +20,7 @@ public class FloatGenerator extends Generator<Float>{
 	}
 
 	@Override
-	public Float generateData() {
+	public Float generateData(String fieldName) {
 		return RandomUtils.nextFloat(startInclusive, endExclusive);
 	}
 	

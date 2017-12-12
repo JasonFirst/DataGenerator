@@ -35,7 +35,7 @@ public class GenerateConfig implements IGenerateConfig{
 	public static GenerateConfig DEFAULT_CONFIG = new GenerateConfig();
 	
 	public GenerateConfig() {
-		this.generateCount=10;
+		this.generateCount=3;
 		setDefaultGenerators();
 	}
 	public GenerateConfig(Integer generateCount) {

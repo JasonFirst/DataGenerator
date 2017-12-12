@@ -1,5 +1,5 @@
 package com.jason.data.generator.utils;
 
 public interface IGenerator<T> {
-	T generateData();
+	T generateData(String fieldName);
 }

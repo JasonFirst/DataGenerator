@@ -3,6 +3,7 @@ package com.jason.data.generator.generator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -17,6 +18,7 @@ public class StringGenerator extends Generator<String>{
 	private String prefix="";
 	private String suffix="";
 	private String charRange = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private String dateNumbers = "123456789";
 	private String format;
 	private String[] formatParameters;
 	private String[][] formatParameterArrays;
@@ -81,13 +83,24 @@ public class StringGenerator extends Generator<String>{
 		this.setFormatParameterArrays(formatParameterArrays);
 		generateType=5;
 	}
-
+	
 	@Override
-	public String generateData() {
+	public String generateData(String fieldName) {
 		
 		switch (generateType) {
 		case 1:
-			return prefix+RandomStringUtils.random(charCount, charRange)+suffix;
+			if (StringUtils.isBlank(fieldName)) {
+				return prefix+RandomStringUtils.random(charCount, charRange)+suffix;
+			}else if (StringUtils.containsIgnoreCase(fieldName, "id")) {
+				return prefix+UUID.randomUUID().toString().replaceAll("-", "");
+			}else if (StringUtils.containsIgnoreCase(fieldName, "date")) {
+				return prefix+getFormatParameterString("201%s-0%s-1%s",dateNumbers,dateNumbers,dateNumbers);
+			}else if (StringUtils.containsIgnoreCase(fieldName, "time")) {
+				return prefix+getFormatParameterString("201%s-0%s-1%s 1%s-3%s-4%s"
+						,dateNumbers,dateNumbers,dateNumbers,dateNumbers,dateNumbers,dateNumbers);
+			}else {
+				return prefix+RandomStringUtils.random(charCount, charRange)+suffix;
+			}
 		case 2:
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < charCount; i++) {
@@ -101,27 +114,35 @@ public class StringGenerator extends Generator<String>{
 			}
 			return StringUtils.join(list.toArray(), joinSeparator);
 		case 4:
-			if (ArrayUtils.isEmpty(formatParameters)) {
-				return format;
-			}
-			Object[] realParameters = new String[formatParameters.length];
-			for (int i = 0; i < formatParameters.length; i++) {
-				realParameters[i] = RandomStringUtils.random(1,formatParameters[i]);
-			}
-			return String.format(format, realParameters);
+			return getFormatParameterString(format,formatParameters);
 		case 5:
-			if(ArrayUtils.isEmpty(formatParameterArrays)) {
-				return format;
-			}
-			Object[] arrayParameters = new String[formatParameterArrays.length];
-			for (int i = 0; i < formatParameterArrays.length; i++) {
-				int parameterIndex = RandomUtils.nextInt(0, formatParameterArrays[i].length);
-				arrayParameters[i] = formatParameterArrays[i][parameterIndex];
-			}
-			return String.format(format, arrayParameters);
+			return getFormatParameterArrayString(format,formatParameterArrays);
 		default:
 			return "";
 		}
+	}
+
+	private String getFormatParameterString(String formatTemp,String... formatParametersTemp) {
+		if (ArrayUtils.isEmpty(formatParametersTemp)) {
+			return formatTemp;
+		}
+		Object[] realParameters = new String[formatParametersTemp.length];
+		for (int i = 0; i < formatParametersTemp.length; i++) {
+			realParameters[i] = RandomStringUtils.random(1,formatParametersTemp[i]);
+		}
+		return String.format(formatTemp, realParameters);
+	}
+
+	private String getFormatParameterArrayString(String formatTemp,String[]... formatParameterArraysTemp) {
+		if(ArrayUtils.isEmpty(formatParameterArraysTemp)) {
+			return formatTemp;
+		}
+		Object[] arrayParameters = new String[formatParameterArraysTemp.length];
+		for (int i = 0; i < formatParameterArraysTemp.length; i++) {
+			int parameterIndex = RandomUtils.nextInt(0, formatParameterArraysTemp[i].length);
+			arrayParameters[i] = formatParameterArraysTemp[i][parameterIndex];
+		}
+		return String.format(formatTemp, arrayParameters);
 	}
 
 	public String[][] getFormatParameterArrays() {

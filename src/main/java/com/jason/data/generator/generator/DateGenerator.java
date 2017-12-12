@@ -41,7 +41,7 @@ public class DateGenerator extends Generator<Date>{
 	}
 
 	@Override
-	public Date generateData() {
+	public Date generateData(String fieldName) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(fluctuateField, -RandomUtils.nextInt(fluctuateAmountBegin, fluctuateAmountEnd));
 		return calendar.getTime();
