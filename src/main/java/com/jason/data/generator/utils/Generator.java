@@ -1,4 +1,4 @@
-package utils;
+package com.jason.data.generator.utils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

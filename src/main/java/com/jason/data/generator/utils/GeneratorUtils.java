@@ -1,4 +1,4 @@
-package utils;
+package com.jason.data.generator.utils;
 
 import java.util.ArrayList;
 import java.util.List;

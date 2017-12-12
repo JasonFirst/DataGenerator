@@ -1,4 +1,4 @@
-package utils;
+package com.jason.data.generator.utils;
 
 
 import java.util.HashMap;
@@ -8,16 +8,16 @@ import java.util.Objects;
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import generator.BigDecimalGenerator;
-import generator.BooleanGenerator;
-import generator.ByteGenerator;
-import generator.DateGenerator;
-import generator.DoubleGenerator;
-import generator.FloatGenerator;
-import generator.IntegerGenerator;
-import generator.LongGenerator;
-import generator.ShortGenerator;
-import generator.StringGenerator;
+import com.jason.data.generator.generator.BigDecimalGenerator;
+import com.jason.data.generator.generator.BooleanGenerator;
+import com.jason.data.generator.generator.ByteGenerator;
+import com.jason.data.generator.generator.DateGenerator;
+import com.jason.data.generator.generator.DoubleGenerator;
+import com.jason.data.generator.generator.FloatGenerator;
+import com.jason.data.generator.generator.IntegerGenerator;
+import com.jason.data.generator.generator.LongGenerator;
+import com.jason.data.generator.generator.ShortGenerator;
+import com.jason.data.generator.generator.StringGenerator;
 
 
 /**

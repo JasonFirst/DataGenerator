@@ -1,4 +1,4 @@
-package generator;
+package com.jason.data.generator.generator;
 
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import utils.Generator;
+import com.jason.data.generator.utils.Generator;
 
 public class StringGenerator extends Generator<String>{
 

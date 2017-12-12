@@ -1,14 +1,13 @@
-package test;
+package com.jason.data.generator.test;
 
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
-
-import generator.DateGenerator;
-import generator.IntegerGenerator;
-import generator.StringGenerator;
-import utils.GenerateConfig;
-import utils.GeneratorUtils;
+import com.jason.data.generator.generator.DateGenerator;
+import com.jason.data.generator.generator.IntegerGenerator;
+import com.jason.data.generator.generator.StringGenerator;
+import com.jason.data.generator.utils.GenerateConfig;
+import com.jason.data.generator.utils.GeneratorUtils;
 
 public class Test {
 	

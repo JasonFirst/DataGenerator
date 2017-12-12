@@ -1,4 +1,4 @@
-package test;
+package com.jason.data.generator.test;
 
 import java.util.Date;
 import java.util.LinkedHashSet;

@@ -1,11 +1,11 @@
-package generator;
+package com.jason.data.generator.generator;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.lang3.RandomUtils;
 
-import utils.Generator;
+import com.jason.data.generator.utils.Generator;
 
 public class DateGenerator extends Generator<Date>{
 
