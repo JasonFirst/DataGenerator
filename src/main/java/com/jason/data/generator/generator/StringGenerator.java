@@ -96,7 +96,7 @@ public class StringGenerator extends Generator<String>{
 			}else if (StringUtils.containsIgnoreCase(fieldName, "date")) {
 				return prefix+getFormatParameterString("201%s-0%s-1%s",dateNumbers,dateNumbers,dateNumbers);
 			}else if (StringUtils.containsIgnoreCase(fieldName, "time")) {
-				return prefix+getFormatParameterString("201%s-0%s-1%s 1%s-3%s-4%s"
+				return prefix+getFormatParameterString("201%s-0%s-1%s 1%s:3%s:4%s"
 						,dateNumbers,dateNumbers,dateNumbers,dateNumbers,dateNumbers,dateNumbers);
 			}else {
 				return prefix+RandomStringUtils.random(charCount, charRange)+suffix;
