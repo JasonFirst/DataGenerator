@@ -42,6 +42,8 @@ public static void main(String[] args) throws Exception {
 	config.putGenerator(new DateGenerator(DateGenerator.fluctuate_milltsecond, 3, 16));
 	config.putGenerator("contactWechat",new StringGenerator(7,"1234567890"));
 	config.putGenerator("timeString",new StringGenerator("201%s-%s2-03","12345670","01"));
+	config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",
+					new String[]{"汉堡","薯条"},new String[]{"可乐","奶茶"}));
 	config.setOpenMessageTip(false);
 	config.setGenerateCount(4);
     
@@ -55,95 +57,93 @@ public static void main(String[] args) throws Exception {
 ### 结果展示：
 ```
 {
-    "price": 261,
-    "timeString": "2015-12-03",
-    "title": "QETRE",
-    "contactWechat": "3369792",
-    "endDate": 1494773579178,
-    "isOnGoing": false,
+    "alternative": "今天吃汉堡，喝奶茶",
+    "timeString": "2010-05-03",
+    "title": "RRWRT",
+    "contactWechat": "2408115",
+    "endDate": 1513082505208,
+    "isOnGoing": true,
+    "price": 258,
     "channelNames": [
-        "WWEWE",
-        "WQTRT",
-        "TERRW",
-        "WEQTW"
+        "QWQEE",
+        "QWWEE",
+        "QWWWQ",
+        "EQWWQ"
     ],
     "keyToDate": {
-        "TWTWQ": 259,
-        "ERTQQ": 262,
-        "TTEEQ": 276,
-        "WRRWW": 258
+        "ERRTW": 254,
+        "QQRET": 260,
+        "QWQET": 298,
+        "WEQWW": 284
+    },
+    "linkedList": [
+        "RTQWQ",
+        "TQEEE",
+        "QEQRQ",
+        "EERQW"
+    ],
+    "mapTest": {
+        "RQEQE": 2023531,
+        "WRRWT": 2772420,
+        "ERRRR": 16052781,
+        "TWQTW": 11492533
     },
     "nameSet": [
-        "TTRRQ",
-        "EQETE",
-        "WWTQE",
-        "QRTWT"
+        "QEERE",
+        "TEETW",
+        "EWEEQ",
+        "QWQRW"
     ],
     "subTasks": [
         {
-            "beginDate": 1494773579176,
+            "beginDate": 1513082505213,
             "channelNames": [
-                "QTQWE",
-                "TTRRT",
-                "EQEQW",
-                "QETTE"
+                "RWEWR",
+                "QQRER",
+                "RQTER",
+                "EQQER"
             ],
-            "endDate": 1494773579175,
-            "price": 262,
-            "title": "TRTWE"
+            "endDate": 1513082505217,
+            "price": 294,
+            "title": "WRQEE"
         },
         {
-            "beginDate": 1494773579174,
+            "beginDate": 1513082505210,
             "channelNames": [
-                "TWRTT",
-                "TWEQQ",
-                "WRRQT",
-                "RRRWQ"
+                "RTEEQ",
+                "QTWRW",
+                "QTQWW",
+                "ERRTW"
             ],
-            "endDate": 1494773579177,
-            "price": 264,
-            "title": "EWRRR"
+            "endDate": 1513082505210,
+            "price": 267,
+            "title": "TQQQT"
         },
         {
-            "beginDate": 1494773579175,
+            "beginDate": 1513082505213,
             "channelNames": [
-                "QQQQT",
-                "RRQQR",
-                "REEEE",
-                "EWWTQ"
+                "WWQWR",
+                "WRERR",
+                "TQQWE",
+                "QEWEW"
             ],
-            "endDate": 1494773579183,
-            "price": 288,
-            "title": "TWEQE"
+            "endDate": 1513082505211,
+            "price": 295,
+            "title": "TRRQW"
         },
         {
-            "beginDate": 1494773579176,
+            "beginDate": 1513082505215,
             "channelNames": [
-                "RQRQE",
-                "RTWEW",
-                "QTRQW",
-                "TTTQR"
+                "RTTQW",
+                "TWERT",
+                "EREWE",
+                "TWWQQ"
             ],
-            "endDate": 1494773579179,
-            "price": 274,
-            "title": "RWERT"
+            "endDate": 1513082505217,
+            "price": 290,
+            "title": "EEQRW"
         }
     ]
 }
 ```
 
-### 需要用到的包maven方式
-```
-<dependencies>
-	<dependency>
-	    <groupId>org.apache.commons</groupId>
-	    <artifactId>commons-lang3</artifactId>
-	    <version>3.4</version>
-	</dependency>
-	<dependency>
-	    <groupId>commons-lang</groupId>
-	    <artifactId>commons-lang</artifactId>
-	    <version>2.5</version>
-	</dependency>
-  </dependencies>
-```
