@@ -22,6 +22,7 @@ public class Task {
 	private Boolean isOnGoing;
 	private String contactWechat;
 	private String timeString;
+	private String alternative;
 	
 	public String getTitle() {
 		return title;
@@ -94,6 +95,12 @@ public class Task {
 	}
 	public void setLinkedList(LinkedList<String> linkedList) {
 		this.linkedList = linkedList;
+	}
+	public String getAlternative() {
+		return alternative;
+	}
+	public void setAlternative(String alternative) {
+		this.alternative = alternative;
 	}
 	
 }

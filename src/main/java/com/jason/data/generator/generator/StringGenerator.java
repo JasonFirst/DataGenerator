@@ -19,6 +19,7 @@ public class StringGenerator extends Generator<String>{
 	private String charRange = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private String format;
 	private String[] formatParameters;
+	private String[][] formatParameterArrays;
 	private int generateType;
 	private String joinSeparator = ",";
 	private int joinCount = 5;
@@ -74,6 +75,12 @@ public class StringGenerator extends Generator<String>{
 		this.formatParameters = formatParameters;
 		generateType=4;
 	}
+	
+	public StringGenerator(String format, String[]... formatParameterArrays) {
+		this.format = format;
+		this.setFormatParameterArrays(formatParameterArrays);
+		generateType=5;
+	}
 
 	@Override
 	public String generateData() {
@@ -97,14 +104,32 @@ public class StringGenerator extends Generator<String>{
 			if (ArrayUtils.isEmpty(formatParameters)) {
 				return format;
 			}
-			Object[] realParameter = new String[formatParameters.length];
+			Object[] realParameters = new String[formatParameters.length];
 			for (int i = 0; i < formatParameters.length; i++) {
-				realParameter[i] = RandomStringUtils.random(1,formatParameters[i]);
+				realParameters[i] = RandomStringUtils.random(1,formatParameters[i]);
 			}
-			return String.format(format, realParameter);
+			return String.format(format, realParameters);
+		case 5:
+			if(ArrayUtils.isEmpty(formatParameterArrays)) {
+				return format;
+			}
+			Object[] arrayParameters = new String[formatParameterArrays.length];
+			for (int i = 0; i < formatParameterArrays.length; i++) {
+				int parameterIndex = RandomUtils.nextInt(0, formatParameterArrays[i].length);
+				arrayParameters[i] = formatParameterArrays[i][parameterIndex];
+			}
+			return String.format(format, arrayParameters);
 		default:
 			return "";
 		}
+	}
+
+	public String[][] getFormatParameterArrays() {
+		return formatParameterArrays;
+	}
+
+	public void setFormatParameterArrays(String[][] formatParameterArrays) {
+		this.formatParameterArrays = formatParameterArrays;
 	}
 	
 }
