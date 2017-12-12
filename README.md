@@ -72,7 +72,7 @@ public static void main(String[] args) throws Exception {
     "testDate": "2019-07-18",
     "testTime": "2017-08-13 17-36-41",
     "price": 299,
-	"contactWechat": "9567542",
+    "contactWechat": "9567542",
     "endDate": 1513085282812,
     "isOnGoing": false,
     "channelNames": [
