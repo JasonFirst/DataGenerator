@@ -43,7 +43,7 @@ public static void main(String[] args) throws Exception {
 	config.putGenerator("contactWechat",new StringGenerator(7,"1234567890"));
 	config.putGenerator("timeString",new StringGenerator("201%s-%s2-03","12345670","01"));
 	config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",
-					new String[]{"汉堡","薯条"},new String[]{"可乐","奶茶"}));
+					new String[]{"汉堡","薯条"},new String[]{"可乐","奶茶","水"}));
 	config.setOpenMessageTip(false);
 	config.setGenerateCount(4);
     
