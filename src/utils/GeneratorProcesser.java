@@ -5,6 +5,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
@@ -81,6 +82,9 @@ public class GeneratorProcesser {
 			currFieldName = field.getName();
 			if (currFieldName.equals("this$0")) {
 				//内部类自身有个属性代表自己
+				continue;
+			}
+			if(Modifier.isFinal(field.getModifiers())){
 				continue;
 			}
 			field.setAccessible(true);

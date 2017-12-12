@@ -8,6 +8,7 @@ import java.util.Objects;
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import generator.BigDecimalGenerator;
 import generator.BooleanGenerator;
 import generator.ByteGenerator;
 import generator.DateGenerator;
@@ -15,6 +16,7 @@ import generator.DoubleGenerator;
 import generator.FloatGenerator;
 import generator.IntegerGenerator;
 import generator.LongGenerator;
+import generator.ShortGenerator;
 import generator.StringGenerator;
 
 
@@ -51,6 +53,8 @@ public class GenerateConfig implements IGenerateConfig{
 		putGenerator(new BooleanGenerator(20,80));
 		putGenerator(new DateGenerator());
 		putGenerator(new ByteGenerator());
+		putGenerator(new ShortGenerator());
+		putGenerator(new BigDecimalGenerator());
 	}
 
 	int getGenerateCount() {
