@@ -70,7 +70,7 @@ public static void main(String[] args) throws Exception {
     "title": "第3个标题",
     "alternative": "今天吃汉堡，喝可乐",
     "testDate": "2019-07-18",
-    "testTime": "2017-08-13 17-36-41",
+    "testTime": "2017-08-13 17:36:41",
     "price": 299,
     "contactWechat": "9567542",
     "endDate": 1513085282812,
