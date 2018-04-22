@@ -25,7 +25,7 @@
 </dependency>
 ```
 
-### 测试类：
+### 测试VO：
 ```
 public class Task {
     	private String studentId;
