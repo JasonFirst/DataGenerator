@@ -46,18 +46,19 @@ public class Task {
 }
 ```
 
-### 简单上手使用方式：
+### 简单偷懒使用方式：
 ```
 public static void main(String[] args) throws Exception {
 	Task one = GeneratorUtils.getOne(Task.class);
-	List<Task> tasks = GeneratorUtils.getList(Task.class);
 	System.out.println(JSONObject.toJSONString(one));
+	
+	List<Task> tasks = GeneratorUtils.getList(Task.class);
 	System.out.println(JSONObject.toJSONString(tasks));
 }
 ```
 
 
-### 配置使用方式：
+### 自定义使用方式（增加一个GenerateConfig参数即可）：
 ```
 public static void main(String[] args) throws Exception {
 	GenerateConfig config = new GenerateConfig();
@@ -72,8 +73,9 @@ public static void main(String[] args) throws Exception {
 	config.setGenerateCount(4);
     
 	Task superOne = GeneratorUtils.getOne(Task.class, config);
-	List<Task> superTasks = GeneratorUtils.getList(Task.class,config);
 	System.out.println(JSONObject.toJSONString(superOne));
+	
+	List<Task> superTasks = GeneratorUtils.getList(Task.class,config);
 	System.out.println(JSONObject.toJSONString(superTasks));
 }
 ```
