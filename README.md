@@ -10,6 +10,25 @@
 #### 	4.单元测试手工填充相当消耗时间。
 		单元测试时需要大批量测试数据，但手工填充相当消耗时间。
 
+### 需要引入的包
+```
+<dependency>
+    <groupId>commons-collections</groupId>
+    <artifactId>commons-collections</artifactId>
+    <version>3.2.1</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.4</version>
+</dependency>
+<dependency>
+    <groupId>commons-lang</groupId>
+    <artifactId>commons-lang</artifactId>
+    <version>2.1</version>
+</dependency>
+```
+
 ### 测试类：
 ```
 public class Task {
