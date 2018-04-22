@@ -10,7 +10,7 @@
 #### 	4.单元测试手工填充相当消耗时间。
 		单元测试时需要大批量测试数据，但手工填充相当消耗时间。
 
-### jar包方式下需要引入的依赖：
+### 需要引入的依赖：
 ```
 <dependency>
     <groupId>commons-collections</groupId>
