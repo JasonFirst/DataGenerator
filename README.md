@@ -46,7 +46,7 @@ public class Task {
 }
 ```
 
-### 简单偷懒使用方式：
+### 懒人使用方式：
 ```
 public static void main(String[] args) throws Exception {
 	Task one = GeneratorUtils.getOne(Task.class);
