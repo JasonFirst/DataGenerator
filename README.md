@@ -8,23 +8,23 @@
 
 ### 传统手动填充方式
 ```
-	Task task = new Task();
-	task.setStudentId("23");
-	task.setTitle("标题");
-	task.setTestDate("2018-10-20");
-	task.setTestTime("2018-10-20 11:11:23");
-	task.setPrice(44);
-	task.setEndDate(new Date());
-	Set<String> names = new HashSet<>();
-	names.add("jason");
-	names.add("lili");
-	names.add("jan");
-	task.setNameSet(names);
-	...
+Task task = new Task();
+task.setStudentId("23");
+task.setTitle("标题");
+task.setTestDate("2018-10-20");
+task.setTestTime("2018-10-20 11:11:23");
+task.setPrice(44);
+task.setEndDate(new Date());
+Set<String> names = new HashSet<>();
+names.add("jason");
+names.add("lili");
+names.add("jan");
+task.setNameSet(names);
+...
 ```
 #####现在，你只要一行代码，就可以填充你的VO
 ```
-	Task one = GeneratorUtils.getOne(Task.class);
+Task one = GeneratorUtils.getOne(Task.class);
 ```
 
 ### 需要引入的依赖：
