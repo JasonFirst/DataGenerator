@@ -83,15 +83,15 @@ public static void main(String[] args) throws Exception {
 ```
 public static void main(String[] args) throws Exception {
 	GenerateConfig config = new GenerateConfig();
-	config.putGenerator(new StringGenerator(5,"QWERT"));		//数量，可选字符
-	config.putGenerator(new IntegerGenerator(250,300));		//数值可选范围
+	config.setOpenMessageTip(false);	//关掉的消息提示
+	config.setGenerateCount(4);		//集合生成数量
+	config.putGenerator(new StringGenerator(5,"QWERT"));		//设置字符串生成方式，参数为：数量，可选字符
+	config.putGenerator(new IntegerGenerator(250,300));		//设置整形生成方式，参数为：数值可选范围
 	config.putGenerator(new DateGenerator(DateGenerator.fluctuate_milltsecond, 3, 16));		//日期浮动单位，范围
 	config.putGenerator("contactWechat",new StringGenerator(7,"1234567890"));			//只填充特定字段名
 	config.putGenerator("timeString",new StringGenerator("201%s-%s2-03","12345670","01"));		//格式化字符串
 	config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",			
 					new String[]{"汉堡","薯条"},new String[]{"可乐","奶茶","水"}));	//更复杂的格式化字符串
-	config.setOpenMessageTip(false);	//关掉的消息提示
-	config.setGenerateCount(4);		//集合生成数量
   
 	Task superOne = GeneratorUtils.getOne(Task.class, config);
 	System.out.println(JSONObject.toJSONString(superOne));
