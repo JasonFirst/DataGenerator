@@ -6,7 +6,7 @@
 #### 	3.单元测试时需要大批量测试数据，但手工填充相当消耗时间。
 但不论哪种场景，本插件的本质，都是想要你能快速给VO填充一些数据，之后可以再使用JSON工具转成JSON字符串，让你达到偷懒的目的。
 
-### 传统手动填充测试数据的方式
+### 传统手动填充测试数据的方式（创建对象，一堆set方法）
 ```
 Task task = new Task();
 task.setStudentId("23");
@@ -15,6 +15,7 @@ task.setTestDate("2018-10-20");
 task.setTestTime("2018-10-20 11:11:23");
 task.setPrice(44);
 task.setEndDate(new Date());
+
 Set<String> names = new HashSet<>();
 names.add("jason");
 names.add("lili");
