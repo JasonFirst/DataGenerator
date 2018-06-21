@@ -6,9 +6,9 @@
 #### 	3.单元测试时需要大批量测试数据，但手工填充相当消耗时间。
 但不论哪种场景，本插件的本质，都是想要你能快速给VO填充一些数据，之后可以再使用JSON工具转成JSON字符串，让你达到偷懒的目的。
 
- 此框架侵入性小，只需要引入一个jar包，一句代码既可以使用。
+只需要一句代码既可以使用。
 
-### 传统手动填充测试数据的方式（创建对象，一堆set方法）
+### 联调时，需要手动填充测试数据，提供json结果给对接人。你会创建一个Vo对象，一堆set方法。
 ```
 Task task = new Task();
 task.setStudentId("23");
@@ -25,7 +25,7 @@ names.add("jan");
 task.setNameSet(names);
 ...
 ```
-##### 现在，你只要一行代码，就可以填充你的VO，生成随机的测试数据
+##### 而现在，你只要一行代码，就可以把你的VO填充满一些随机的数据，再转成Json格式就能发给你的对接人了。（这样的好处是你节省了很多时间）
 ```
 Task one = GeneratorUtils.getOne(Task.class);
 ```
@@ -70,15 +70,17 @@ public class Task {
 }
 ```
 
-### 懒人使用方式：
+### 懒人使用方式：直接生成，无需任何配置
 ```
 public static void main(String[] args) throws Exception {
 	Task one = GeneratorUtils.getOne(Task.class);			//生成一个VO
 	System.out.println(JSONObject.toJSONString(one));
-	
-	List<Task> tasks = GeneratorUtils.getList(Task.class);		//生成多个VO
-	System.out.println(JSONObject.toJSONString(tasks));
 }
+```
+如果你需要生成一个List<Vo>
+```
+List<Task> tasks = GeneratorUtils.getList(Task.class);		//生成多个VO
+System.out.println(JSONObject.toJSONString(tasks));
 ```
 
 
@@ -88,13 +90,7 @@ public static void main(String[] args) throws Exception {
 	GenerateConfig config = new GenerateConfig();
 	config.setOpenMessageTip(false);	//关掉的消息提示
 	config.setGenerateCount(4);		//集合生成数量
-	config.putGenerator(new StringGenerator(5,"QWERT"));	//设置字符串生成方式，参数为：数量，可选字符
-	config.putGenerator(new IntegerGenerator(250,300));	//设置整形生成方式，参数为：数值可选范围
-	config.putGenerator(new DateGenerator(DateGenerator.fluctuate_milltsecond, 3, 16));	//日期浮动单位，范围
-	config.putGenerator("contactWechat",new StringGenerator(7,"1234567890"));		//只填充特定字段名
-	config.putGenerator("timeString",new StringGenerator("201%s-%s2-03","12345670","01"));	//格式化字符串
-	config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",			
-					new String[]{"汉堡","薯条"},new String[]{"可乐","奶茶","水"}));
+	
   
 	Task superOne = GeneratorUtils.getOne(Task.class, config);
 	System.out.println(JSONObject.toJSONString(superOne));
@@ -104,7 +100,40 @@ public static void main(String[] args) throws Exception {
 }
 ```
 
-### 结果展示（单个）：
+可以设定字符串生成范围
+```
+config.putGenerator(new StringGenerator(5,"QWERT"));	//设置字符串生成方式，参数为：数量，可选字符
+```
+
+也可以设定整形生成范围
+```
+config.putGenerator(new IntegerGenerator(250,300));	//设置整形生成方式，参数为：数值可选范围
+```
+
+日期当然也可以
+```
+config.putGenerator(new DateGenerator(DateGenerator.fluctuate_milltsecond, 3, 16));	//日期浮动单位，范围
+```
+
+为某个字段指定“内容生成器”（一个继承Generator接口的类，你也可以为你的类型设计一个你需要的生成器，很简单，试试看吧。）
+```
+config.putGenerator("contactWechat",new StringGenerator(7,"1234567890"));		//只填充特定字段名
+```
+
+为 timeString 字段选择一个格式化字符串生成器，%s会在后面的字符串里选择一个字符串来填充。
+```
+config.putGenerator("timeString",new StringGenerator("201%s-%s2-03","12345670","01"));	//格式化字符串
+```
+
+为 alternative 字段选择一个更复杂的格式化字符串生成器。
+```
+config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",			
+					new String[]{"汉堡","薯条"},new String[]{"可乐","奶茶","水"}));
+```
+
+	
+
+### 转成JSON字符串输出：
 ```
 {
     "studentId": "53b222761459425c91f7c67d5703eec7",
@@ -161,7 +190,7 @@ public static void main(String[] args) throws Exception {
 }
 ```
 
-### 结果展示（多个）：
+### 转成JSON字符串输出（List<Task>）：
 ```
 [
     {
