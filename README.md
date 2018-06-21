@@ -1,3 +1,10 @@
+# 更新日志
+## 2018-06-21
+1.根据字符串字段生成内容
+* 如果字段名带有"id"字样，则生成32位uuid字符串。
+* 如果字段名带有"date"字样，则生成日期"yyyy-MM-dd"样式的字符串。
+* 如果字段名带有"time"字样，则生成日期"yyyy-MM-dd hh:mm:ss"样式的字符串。
+
 # DataGenerator
 ## 数据生成器，轻松生成模拟数据，快速生成JSON。
 ### 应用场景：
@@ -73,8 +80,7 @@ public class Task {
 ### 懒人使用方式：直接生成，无需任何配置
 ```
 public static void main(String[] args) throws Exception {
-	Task one = GeneratorUtils.getOne(Task.class);			//生成一个VO
-	System.out.println(JSONObject.toJSONString(one));
+	Task one = GeneratorUtils.getOne(Task.class);			//你成功生成了一个填满数据的对象
 }
 ```
 如果你需要生成一个List<Vo>
@@ -83,19 +89,14 @@ List<Task> tasks = GeneratorUtils.getList(Task.class);		//生成多个VO
 ```
 
 
-### 自定义使用方式（增加一个GenerateConfig参数即可）：
+### 自定义使用方式（新建一个GenerateConfig放到第二个参数）：
 ```
 public static void main(String[] args) throws Exception {
 	GenerateConfig config = new GenerateConfig();
-	config.setOpenMessageTip(false);	//关掉的消息提示
-	config.setGenerateCount(4);		//集合生成数量
-	
+	config.setGenerateCount(4);		//指定集合生成数量{List，Map，Set}等
+	config.setOpenMessageTip(false);	//关掉消息提示
   
 	Task superOne = GeneratorUtils.getOne(Task.class, config);
-	System.out.println(JSONObject.toJSONString(superOne));
-	
-	List<Task> superTasks = GeneratorUtils.getList(Task.class,config);
-	System.out.println(JSONObject.toJSONString(superTasks));
 }
 ```
 
@@ -114,7 +115,7 @@ config.putGenerator(new IntegerGenerator(250,300));	//设置整形生成方式�
 config.putGenerator(new DateGenerator(DateGenerator.fluctuate_milltsecond, 3, 16));	//日期浮动单位，范围
 ```
 
-为某个字段指定“内容生成器”（一个继承Generator接口的类，你也可以为你的类型设计一个你需要的生成器，很简单，试试看吧。）
+为 contactWechat 字段指定“7位数微信账号的字符串生成器”
 ```
 config.putGenerator("contactWechat",new StringGenerator(7,"1234567890"));		//只填充特定字段名
 ```
@@ -130,6 +131,7 @@ config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",
 					new String[]{"汉堡","薯条"},new String[]{"可乐","奶茶","水"}));
 ```
 
+第一个参数为字段名，第二个参数为一个继承Generator接口的对象，你也可以为你的类型设计一个你需要的生成器，很简单，试试看吧。
 	
 
 ### 转成JSON字符串输出：
