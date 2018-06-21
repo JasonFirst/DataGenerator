@@ -1,19 +1,21 @@
-# 更新日志
-## 2018-06-21
-1.自动根据字符串字段名生成内容（详见StringGenerator）
+## 更新日志
+### 2018-06-21
+1. 自动根据字符串字段名生成内容（为了让数据看起来更容易调试）
 * 如果字段名带有"id"字样，则生成32位uuid字符串。
 * 如果字段名带有"date"字样，则生成日期"yyyy-MM-dd"样式的字符串。
 * 如果字段名带有"time"字样，则生成日期"yyyy-MM-dd hh:mm:ss"样式的字符串。
+2. 欢迎补充或者提出想法！
 
-# DataGenerator
-## 数据生成器，轻松生成模拟数据，快速生成JSON提供联调。
-### 应用场景：
-#### 	1.某些业务的代码编写过程较为复杂，但需要快速生成一些随机的模拟数据来做“演示效果”
-#### 	2.需要快速生成一份模拟数据提供给前端工程师调接口
-#### 	3.单元测试时需要大批量测试数据，但手工填充相当消耗时间。
+## DataGenerator使用说明书
+### 数据生成器，轻松生成模拟数据，快速生成JSON提供联调。
+#### 应用场景：
+1. 某些业务的代码编写过程较为复杂，但需要快速生成一些随机的模拟数据来做“演示效果”
+2. 需要快速生成一份模拟数据提供给前端工程师调接口
+3. 单元测试时需要大批量测试数据，但手工填充相当消耗时间。
+
 但不论哪种场景，本插件的本质，都是想要你能快速给VO填充一些数据，之后可以再使用JSON工具转成JSON字符串，让你达到偷懒的目的。
 
-只需要一句代码既可以使用。
+现在，你只需要一句代码既可以填充一个VO对象。
 
 ### 联调时，需要手动填充测试数据，提供JSON结果给对接人。你会创建一个Vo对象，一堆set方法。
 ```
@@ -302,3 +304,42 @@ config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",
     }
 ]
 ```
+	
+# 项目文件结构及实现
+
+### 基础知识
+你需要了解：
+* 泛型
+* 反射
+* 反射处理泛型和数组
+
+### 这是一张数据生成器的tree结构图（windows自带tree /F命令，你也可以试试）
+![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%9B%BE.png)
+
+其中：
+* config：        数据生成配置项
+* processer：     数据生成处理中心（如StringGenerator用来随机生成一些字符串）
+* type：          内容生成器。（基础数据类型也使用这些类）
+* utils：         整个项目的终点站，提供一些可调用的方法。
+
+![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%99%A8%E8%A7%A3%E6%9E%90%E5%9B%BE.png)
+
+* 处理中心通过配置中心的定义来生成数据，如果你没有提供，则系统自动创建一个配置对象。
+* 而配置中心，存放着type包下的全部内容生成器。你也可以定义一个，然后put到配置中心去。
+
+![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%99%A8%E5%A4%84%E7%90%86%E4%B8%AD%E5%BF%83%E7%BB%93%E6%9E%84.png)
+
+这是整个GeneratorProcesser（处理中心）的方法。
+其中为4种泛型分别定义了生成方式：
+* getObjectByClassType              基础Class类型，包括基本数组
+* getObjectParameterizedType        泛型参数化类型（如：List<T>）
+* getObjectGenericArrayType         泛型数组（如：List<T>[]，因不常用目前未实现，欢迎补充）
+* getObjectWildcardType		    通配符类型（如：? extends classA 中的?，因不常用目前未实现，欢迎补充）
+
+![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E5%AF%B9%E8%B1%A1%E7%94%9F%E6%88%90%E5%99%A8%E5%A4%84%E7%90%86%E4%B8%AD%E5%BF%83%E5%86%85%E9%83%A8%E9%80%BB%E8%BE%91%20.png)
+
+1. 最初始的入口为generateNormalObject
+2. 当找到对应的“内容生成器”时，直接处理并返回。
+3. 当未找到时，则使用反射找到所有的字段，然后根据每个字段的类型分别查找“内容生成器”去处理并赋值。
+4. 如果某个依然无法找到内容生成器，则再进行第2二步的分解字段和第3步的处理。（以此来处理多重嵌套的VO）
+5. 如此递归处理，直到得到一个完整的对象，到此为止一个填充慢数据的VO就生成了。
