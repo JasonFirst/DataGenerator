@@ -80,7 +80,6 @@ public static void main(String[] args) throws Exception {
 如果你需要生成一个List<Vo>
 ```
 List<Task> tasks = GeneratorUtils.getList(Task.class);		//生成多个VO
-System.out.println(JSONObject.toJSONString(tasks));
 ```
 
 
