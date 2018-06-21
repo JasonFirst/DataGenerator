@@ -323,8 +323,8 @@ config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",
 
 ![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%99%A8%E8%A7%A3%E6%9E%90%E5%9B%BE.png)
 
-处理中心通过配置中心的定义来生成数据，如果你没有提供，则系统自动创建一个配置对象。
-而配置中心，存放着type包下的全部内容生成器。你也可以定义一个，然后put到配置中心去。
+* 处理中心通过配置中心的定义来生成数据，如果你没有提供，则系统自动创建一个配置对象。
+* 而配置中心，存放着type包下的全部内容生成器。你也可以定义一个，然后put到配置中心去。
 
 ![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%99%A8%E5%A4%84%E7%90%86%E4%B8%AD%E5%BF%83%E7%BB%93%E6%9E%84.png)
 
