@@ -1,4 +1,4 @@
-package com.jason.data.generator.utils;
+package com.jason.data.generator.config;
 
 
 import java.util.HashMap;
@@ -8,20 +8,21 @@ import java.util.Objects;
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.jason.data.generator.generator.BigDecimalGenerator;
-import com.jason.data.generator.generator.BooleanGenerator;
-import com.jason.data.generator.generator.ByteGenerator;
-import com.jason.data.generator.generator.DateGenerator;
-import com.jason.data.generator.generator.DoubleGenerator;
-import com.jason.data.generator.generator.FloatGenerator;
-import com.jason.data.generator.generator.IntegerGenerator;
-import com.jason.data.generator.generator.LongGenerator;
-import com.jason.data.generator.generator.ShortGenerator;
-import com.jason.data.generator.generator.StringGenerator;
+import com.jason.data.generator.type.BigDecimalGenerator;
+import com.jason.data.generator.type.BooleanGenerator;
+import com.jason.data.generator.type.ByteGenerator;
+import com.jason.data.generator.type.DateGenerator;
+import com.jason.data.generator.type.DoubleGenerator;
+import com.jason.data.generator.type.FloatGenerator;
+import com.jason.data.generator.type.IntegerGenerator;
+import com.jason.data.generator.type.LongGenerator;
+import com.jason.data.generator.type.ShortGenerator;
+import com.jason.data.generator.type.StringGenerator;
+import com.jason.data.generator.type.base.Generator;
 
 
 /**
- * 成成器配置
+ * 生成器配置
  * @author Administrator
  *
  */
@@ -57,11 +58,11 @@ public class GenerateConfig implements IGenerateConfig{
 		putGenerator(new BigDecimalGenerator());
 	}
 
-	int getGenerateCount() {
+	public int getGenerateCount() {
 		return generateCount;
 	}
 	
-	Generator<?> getObjectGenerator(Class<?> classType, String fieldName){
+	public Generator<?> getObjectGenerator(Class<?> classType, String fieldName){
 		
 		Class<?> wrapperClassType = ClassUtils.primitiveToWrapper(classType);
 		
@@ -78,7 +79,7 @@ public class GenerateConfig implements IGenerateConfig{
 		}
 	}
 	
-	boolean isOpenMessageTip() {
+	public boolean isOpenMessageTip() {
 		return isOpenMessageTip;
 	}
 	

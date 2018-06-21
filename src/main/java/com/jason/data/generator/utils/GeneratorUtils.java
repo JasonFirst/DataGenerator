@@ -3,6 +3,9 @@ package com.jason.data.generator.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jason.data.generator.config.GenerateConfig;
+import com.jason.data.generator.processer.GeneratorProcesser;
+
 /**
  * 对象生成器工具类
  * @author Administrator

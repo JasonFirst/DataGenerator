@@ -1,4 +1,4 @@
-package com.jason.data.generator.utils;
+package com.jason.data.generator.processer;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -19,6 +19,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import com.jason.data.generator.config.GenerateConfig;
+import com.jason.data.generator.type.base.Generator;
+
 /**
  * 数据生成器处理中心
  * @author Administrator
@@ -30,12 +33,12 @@ public class GeneratorProcesser {
 	private Object topClassObject;
 	
 	
-	Object generateObject(GenerateConfig generateConfig,Class<?> classType){
+	public Object generateObject(GenerateConfig generateConfig,Class<?> classType){
 		try {
 			return generateNormalObject(generateConfig,classType);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new IllegalArgumentException("dataGenerator生成对象时错误");
 		}
 	}
 	

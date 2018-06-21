@@ -1,4 +1,6 @@
-package com.jason.data.generator.utils;
+package com.jason.data.generator.config;
+
+import com.jason.data.generator.type.base.Generator;
 
 public interface IGenerateConfig {
 

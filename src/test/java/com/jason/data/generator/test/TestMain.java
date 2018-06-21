@@ -3,13 +3,13 @@ package com.jason.data.generator.test;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jason.data.generator.generator.DateGenerator;
-import com.jason.data.generator.generator.IntegerGenerator;
-import com.jason.data.generator.generator.StringGenerator;
-import com.jason.data.generator.utils.GenerateConfig;
+import com.jason.data.generator.config.GenerateConfig;
+import com.jason.data.generator.type.DateGenerator;
+import com.jason.data.generator.type.IntegerGenerator;
+import com.jason.data.generator.type.StringGenerator;
 import com.jason.data.generator.utils.GeneratorUtils;
 
-public class Test {
+public class TestMain {
 	
 	public static void main(String[] args) throws Exception {
 		Task one = GeneratorUtils.getOne(Task.class);

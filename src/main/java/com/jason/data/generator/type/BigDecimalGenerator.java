@@ -1,10 +1,10 @@
-package com.jason.data.generator.generator;
+package com.jason.data.generator.type;
 
 import java.math.BigDecimal;
 
 import org.apache.commons.lang3.RandomUtils;
 
-import com.jason.data.generator.utils.Generator;
+import com.jason.data.generator.type.base.Generator;
 
 public class BigDecimalGenerator extends Generator<BigDecimal>{
 
