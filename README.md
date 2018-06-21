@@ -302,3 +302,42 @@ config.putGenerator("alternative",new StringGenerator("今天吃%s，喝%s",
     }
 ]
 ```
+	
+# 项目文件结构及实现
+
+### 基础知识
+你需要了解：
+* 泛型
+* 反射
+* 反射处理泛型和数组
+
+### 这是一张数据生成器的tree结构图（windows自带tree /F命令，你也可以试试）
+![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%9B%BE.png)
+
+其中：
+* config：        数据生成配置项
+* processer：     数据生成处理中心（如StringGenerator用来随机生成一些字符串）
+* type：          内容生成器。（基础数据类型也使用这些类）
+* utils：         整个项目的终点站，提供一些可调用的方法。
+
+![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%99%A8%E8%A7%A3%E6%9E%90%E5%9B%BE.png)
+
+处理中心通过配置中心的定义来生成数据，如果你没有提供，则系统自动创建一个配置对象。
+而配置中心，存放着type包下的全部内容生成器。你也可以定义一个，然后put到配置中心去。
+
+![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%99%A8%E5%A4%84%E7%90%86%E4%B8%AD%E5%BF%83%E7%BB%93%E6%9E%84.png)
+
+这是整个GeneratorProcesser（处理中心）的方法。
+其中为4种泛型分别定义了生成方式：
+* getObjectByClassType              基础Class类型，包括基本数组
+* getObjectParameterizedType        泛型参数化类型（如：List<T>）
+* getObjectGenericArrayType         泛型数组（如：List<T>[]，因不常用目前未实现，欢迎补充）
+* getObjectWildcardType		    通配符类型（如：? extends classA 中的?，因不常用目前未实现，欢迎补充）
+
+![avatar](https://raw.githubusercontent.com/JasonFirst/DataGenerator/master/%E5%AF%B9%E8%B1%A1%E7%94%9F%E6%88%90%E5%99%A8%E5%A4%84%E7%90%86%E4%B8%AD%E5%BF%83%E5%86%85%E9%83%A8%E9%80%BB%E8%BE%91%20.png)
+
+1. 最初始的入口为generateNormalObject
+2. 当找到对应的“内容生成器”时，直接处理并返回。
+3. 当未找到时，则使用反射找到所有的字段，然后根据每个字段的类型分别查找“内容生成器”去处理并赋值。
+4. 如果某个依然无法找到内容生成器，则再进行第2二步的分解字段和第3步的处理。（以此来处理多重嵌套的VO）
+5. 如此递归处理，直到得到一个完整的对象，到此为止一个自动填充的VO就生成了。
